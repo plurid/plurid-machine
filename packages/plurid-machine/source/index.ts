@@ -78,13 +78,16 @@ app.whenReady().then(() => {
 
     const contextMenu = Menu.buildFromTemplate([
         {
-            label: 'Machine',
+            label: 'Plurid Machine',
             click: () => {
                 if (window === null) {
                     createWindow();
                     app.dock.show();
                 }
             },
+        },
+        {
+            type: 'separator',
         },
         {
             label: 'Quit',
