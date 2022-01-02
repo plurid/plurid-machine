@@ -85,7 +85,7 @@ const productsServers = [
     // 'plurid.com/deself',
     // 'plurid.com/desite',
     'plurid.com/detime',
-    // 'plurid.com/detool',
+    'plurid.com/detool',
     // 'plurid.com/detour',
     'plurid.com/detune',
     'plurid.com/deturn',
