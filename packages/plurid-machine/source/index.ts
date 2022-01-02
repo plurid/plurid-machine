@@ -7,6 +7,7 @@
         screen,
         BrowserWindow,
         Tray,
+        Menu,
     } from 'electron';
     // #endregion libraries
 // #endregion imports
@@ -58,10 +59,6 @@ app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     app.dock.hide();
-
-    // if (process.platform !== 'darwin') {
-    //     app.quit();
-    // }
 });
 
 app.on('activate', () => {
@@ -78,13 +75,24 @@ app.whenReady().then(() => {
             './assets/meta/tray.png',
         ),
     );
-    // tray.setToolTip('plurid machine');
 
-    tray.on('click', () => {
-        if (window === null) {
-            createWindow();
-            app.dock.show();
-        }
-    });
+    const contextMenu = Menu.buildFromTemplate([
+        {
+            label: 'Machine',
+            click: () => {
+                if (window === null) {
+                    createWindow();
+                    app.dock.show();
+                }
+            },
+        },
+        {
+            label: 'Quit',
+            click: () => {
+                app.quit();
+            },
+        },
+    ]);
+    tray.setContextMenu(contextMenu);
 });
 // #endregion module
