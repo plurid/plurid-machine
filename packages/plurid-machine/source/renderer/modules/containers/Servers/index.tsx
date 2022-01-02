@@ -109,6 +109,12 @@ const productsServers = [
 ];
 
 
+const tertiaryServers = [
+    'user.custom/service',
+];
+
+
+
 export interface ServersOwnProperties {
 }
 
@@ -186,6 +192,7 @@ const Servers: React.FC<ServersProperties> = (
                 </StyledServersList>
             </div>
 
+
             <div>
                 <h2>
                     ∂products
@@ -205,6 +212,36 @@ const Servers: React.FC<ServersProperties> = (
                                     text={productsServer}
                                     atClick={() => {
                                         dispatchSetGeneralView(productsServer);
+                                    }}
+                                    theme={stateGeneralTheme}
+                                    inline={true}
+                                />
+                            </StyledServerItem>
+                        );
+                    })}
+                </StyledServersList>
+            </div>
+
+
+            <div>
+                <h2>
+                    tertiary
+                </h2>
+
+                <StyledServersList>
+                    {tertiaryServers.map(tertiaryServer => {
+                        return (
+                            <StyledServerItem
+                                key={tertiaryServer}
+                            >
+                                <PluridIconAdd
+                                    theme={stateGeneralTheme}
+                                />
+
+                                <PluridLinkButton
+                                    text={tertiaryServer}
+                                    atClick={() => {
+                                        dispatchSetGeneralView(tertiaryServer);
                                     }}
                                     theme={stateGeneralTheme}
                                     inline={true}
