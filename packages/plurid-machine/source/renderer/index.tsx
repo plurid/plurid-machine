@@ -13,8 +13,10 @@
 
 
 // #region module
+const APPLICATION = 'plurid-machine';
+
 ReactDOM.render(
     <App />,
-    document.getElementById('plurid-machine'),
+    document.getElementById(APPLICATION),
 );
 // #endregion module
