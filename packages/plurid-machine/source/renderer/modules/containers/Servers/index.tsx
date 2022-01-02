@@ -12,6 +12,7 @@
     } from '@plurid/plurid-themes';
 
     import {
+        PluridIconAdd,
         PluridIconValid,
         PluridIconInvalid,
     } from '@plurid/plurid-icons-react';
@@ -162,7 +163,7 @@ const Servers: React.FC<ServersProperties> = (
                             <StyledServerItem
                                 key={infrastructureServer}
                             >
-                                <PluridIconValid
+                                <PluridIconAdd
                                     theme={stateGeneralTheme}
                                 />
 
@@ -191,7 +192,7 @@ const Servers: React.FC<ServersProperties> = (
                             <StyledServerItem
                                 key={productsServer}
                             >
-                                <PluridIconValid
+                                <PluridIconAdd
                                     theme={stateGeneralTheme}
                                 />
 
