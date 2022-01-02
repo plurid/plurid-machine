@@ -128,7 +128,7 @@ const Servers: React.FC<ServersProperties> = (
             theme={stateGeneralTheme}
         >
             <h1>
-                plurid machine servers
+                servers
             </h1>
 
             <div
