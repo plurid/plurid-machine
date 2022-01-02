@@ -23,8 +23,8 @@ const createWindow = () => {
         icon: './assets/meta/plurid.png',
         minHeight: 500,
         minWidth: 300,
-        title: 'den',
-        titleBarStyle: 'hiddenInset',
+        title: 'plurid machine',
+        // titleBarStyle: 'hiddenInset',
         webPreferences: {
             nodeIntegration: true,
             webviewTag: true,
