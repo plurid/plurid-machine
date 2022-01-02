@@ -14,42 +14,46 @@
 
     // #region external
     import {
-        PluridGlobalStyles,
-        GlobalStyles,
+        PluridLinkButton,
     } from '~renderer-services/styled';
-
-    import Servers from '~source/renderer/modules/containers/Servers';
-    import Server from '~source/renderer/modules/components/Server';
 
     import { AppState } from '~renderer-services/state/store';
     import StateContext from '~renderer-services/state/context';
     import selectors from '~renderer-services/state/selectors';
-    // import actions from '~renderer-services/state/actions';
+    import actions from '~renderer-services/state/actions';
     // #endregion external
+
+
+    // #region internal
+    import {
+        StyledServer,
+    } from './styled';
+    // #endregion internal
 // #endregion imports
 
 
 
 // #region module
-export interface ViewOwnProperties {
+export interface ServerOwnProperties {
 }
 
-export interface ViewStateProperties {
+export interface ServerStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
     stateGeneralView: string;
 }
 
-export interface ViewDispatchProperties {
+export interface ServerDispatchProperties {
+    dispatchSetGeneralView: typeof actions.views.setGeneralView;
 }
 
-export type ViewProperties =
-    & ViewOwnProperties
-    & ViewStateProperties
-    & ViewDispatchProperties;
+export type ServerProperties =
+    & ServerOwnProperties
+    & ServerStateProperties
+    & ServerDispatchProperties;
 
 
-const View: React.FC<ViewProperties> = (
+const Server: React.FC<ServerProperties> = (
     properties,
 ) => {
     // #region properties
@@ -59,30 +63,29 @@ const View: React.FC<ViewProperties> = (
         // stateInteractionTheme,
         stateGeneralView,
         // #endregion state
+
+        // #region dispatch
+        dispatchSetGeneralView,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
 
     // #region render
-    const view = stateGeneralView === '/'
-        ? (<Servers />)
-        : (
-            <Server/>
-        );
-
     return (
-        <>
-            <PluridGlobalStyles
+        <StyledServer
+            theme={stateGeneralTheme}
+        >
+            <PluridLinkButton
+                text="servers"
+                atClick={() => {
+                    dispatchSetGeneralView('/');
+                }}
                 theme={stateGeneralTheme}
             />
 
-            <GlobalStyles
-                theme={stateGeneralTheme}
-                gradient={true}
-            />
-
-            {view}
-        </>
+            Server
+        </StyledServer>
     );
     // #endregion render
 }
@@ -90,7 +93,7 @@ const View: React.FC<ViewProperties> = (
 
 const mapStateToProperties = (
     state: AppState,
-): ViewStateProperties => ({
+): ServerStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
     stateGeneralView: selectors.views.getGeneralView(state),
@@ -99,22 +102,27 @@ const mapStateToProperties = (
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
-): ViewDispatchProperties => ({
+): ServerDispatchProperties => ({
+    dispatchSetGeneralView: (
+        payload,
+    ) => dispatch(
+        actions.views.setGeneralView(payload),
+    ),
 });
 
 
-const ConnectedView = connect(
+const ConnectedServer = connect(
     mapStateToProperties,
     mapDispatchToProperties,
     null,
     {
         context: StateContext,
     },
-)(View);
+)(Server);
 // #endregion module
 
 
 
 // #region exports
-export default ConnectedView;
+export default ConnectedServer;
 // #endregion exports

@@ -20,7 +20,7 @@
     import { AppState } from '~renderer-services/state/store';
     import StateContext from '~renderer-services/state/context';
     import selectors from '~renderer-services/state/selectors';
-    // import actions from '~renderer-services/state/actions';
+    import actions from '~renderer-services/state/actions';
     // #endregion external
 
 
@@ -105,6 +105,7 @@ export interface ServersStateProperties {
 }
 
 export interface ServersDispatchProperties {
+    dispatchSetGeneralView: typeof actions.views.setGeneralView;
 }
 
 export type ServersProperties =
@@ -122,6 +123,10 @@ const Servers: React.FC<ServersProperties> = (
         stateGeneralTheme,
         // stateInteractionTheme,
         // #endregion state
+
+        // #region dispatch
+        dispatchSetGeneralView,
+        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -150,7 +155,9 @@ const Servers: React.FC<ServersProperties> = (
                             <PluridLinkButton
                                 key={infrastructureServer}
                                 text={infrastructureServer}
-                                atClick={() => {}}
+                                atClick={() => {
+                                    dispatchSetGeneralView(infrastructureServer);
+                                }}
                                 theme={stateGeneralTheme}
                                 inline={true}
                             />
@@ -170,7 +177,9 @@ const Servers: React.FC<ServersProperties> = (
                             <PluridLinkButton
                                 key={productsServer}
                                 text={productsServer}
-                                atClick={() => {}}
+                                atClick={() => {
+                                    dispatchSetGeneralView(productsServer);
+                                }}
                                 theme={stateGeneralTheme}
                                 inline={true}
                             />
@@ -195,6 +204,11 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): ServersDispatchProperties => ({
+    dispatchSetGeneralView: (
+        payload,
+    ) => dispatch(
+        actions.views.setGeneralView(payload),
+    ),
 });
 
 
