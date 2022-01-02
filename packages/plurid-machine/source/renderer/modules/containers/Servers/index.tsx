@@ -101,6 +101,11 @@ const productsServers = [
     // 'plurid.com/devert',
     'plurid.com/deview',
     'plurid.com/dewiki',
+
+    'plurid.com/deon',
+    // 'plurid.com/deos',
+    'plurid.com/pluridoc',
+    'plurid.com/viewer',
 ];
 
 
