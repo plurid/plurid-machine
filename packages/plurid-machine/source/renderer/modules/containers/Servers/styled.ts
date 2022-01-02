@@ -32,7 +32,19 @@ export const StyledServers = styled.div<IStyledServers>`
     };
 
     h1 {
+        text-align: center;
+        margin-top: 0rem;
         margin-bottom: 3rem;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+        margin: 2rem;
+        width: calc(100% - 4rem);
     }
 `;
 
@@ -41,5 +53,10 @@ export const StyledServersList = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2rem;
+    justify-items: left;
+
+    @media (max-width: 700px) {
+        grid-template-columns: 1fr;
+    }
 `;
 // #region module

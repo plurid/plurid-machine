@@ -13,6 +13,10 @@
 
 
     // #region external
+    import {
+        PluridLinkButton,
+    } from '~renderer-services/styled';
+
     import { AppState } from '~renderer-services/state/store';
     import StateContext from '~renderer-services/state/context';
     import selectors from '~renderer-services/state/selectors';
@@ -143,11 +147,13 @@ const Servers: React.FC<ServersProperties> = (
                 <StyledServersList>
                     {infrastructureServers.map(infrastructureServer => {
                         return (
-                            <div
+                            <PluridLinkButton
                                 key={infrastructureServer}
-                            >
-                                {infrastructureServer}
-                            </div>
+                                text={infrastructureServer}
+                                atClick={() => {}}
+                                theme={stateGeneralTheme}
+                                inline={true}
+                            />
                         );
                     })}
                 </StyledServersList>
@@ -161,11 +167,13 @@ const Servers: React.FC<ServersProperties> = (
                 <StyledServersList>
                     {productsServers.map(productsServer => {
                         return (
-                            <div
+                            <PluridLinkButton
                                 key={productsServer}
-                            >
-                                {productsServer}
-                            </div>
+                                text={productsServer}
+                                atClick={() => {}}
+                                theme={stateGeneralTheme}
+                                inline={true}
+                            />
                         );
                     })}
                 </StyledServersList>
