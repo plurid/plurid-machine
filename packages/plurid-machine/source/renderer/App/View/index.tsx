@@ -66,9 +66,7 @@ const View: React.FC<ViewProperties> = (
     // #region render
     const view = stateGeneralView === '/'
         ? (<Servers />)
-        : (
-            <Server/>
-        );
+        : (<Server />);
 
     return (
         <>
