@@ -1,0 +1,74 @@
+{
+    "name": "@plurid/plurid-machine",
+    "version": "0.0.0-0",
+    "description": "Self-Host the Plurid Machine",
+    "author": "ly3xqhl8g9 <ly3xqhl8g9@plurid.com> (https://plurid.com)",
+    "license": "SEE LICENSE IN LICENSE",
+    "homepage": "https://plurid.com",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/plurid/plurid-machine"
+    },
+    "bugs": {
+        "url": "https://github.com/plurid/plurid-machine/issues"
+    },
+    "scripts": {
+        "clean": "rm -rf ./build",
+        "test": "jest ./app/test/unit/",
+        "watch": "yarn clean && webpack --watch --config ./scripts/webpack.config.js --env dev",
+        "develop": "yarn clean && webpack --config ./scripts/webpack.config.js",
+        "build": "yarn clean && webpack --config ./scripts/webpack.config.js --env prod --progress",
+        "build.clean": "rm -rf `find ./build/ -type d -name __tests__` && rm -rf `find ./build/ -type d -name .DS_STORE`",
+        "build.production": "NODE_ENV=production yarn build && yarn build.clean",
+
+        "electron.run": "electron ./build/",
+        "electron.develop": "yarn develop && yarn electron.run",
+        "electron.builder": "electron-builder build --publish never",
+        "package": "yarn build.production && yarn electron.builder",
+
+        "electron.linux": "yarn build.production && electron-packager ./build/ plurid --overwrite --asar=true --platform=linux --arch=x64 --icon=./build/assets/meta/plurid.png --prune=true --out=plurid",
+        "electron.mac": "yarn build.production && electron-packager ./build/ --overwrite --platform=darwin --arch=x64 --icon=./build/assets/meta/plurid.icns --prune=true --out=plurid",
+        "electron.windows": "yarn build.production && electron-packager ./build/ plurid --overwrite --asar=true --platform=win32 --arch=ia32 --icon=./build/assets/meta/plurid.ico --prune=true --out=plurid --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"plurid\""
+    },
+    "dependencies": {
+        "@plurid/elementql": "^0.0.0-1",
+        "@plurid/elementql-client-react": "^0.0.0-1",
+        "@plurid/plurid-data": "^0.0.0-9",
+        "@plurid/plurid-engine": "^0.0.0-8",
+        "@plurid/plurid-functions": "^0.0.0-17",
+        "@plurid/plurid-functions-react": "^0.0.0-4",
+        "@plurid/plurid-icons-react": "^0.0.0-3",
+        "@plurid/plurid-pubsub": "^0.0.0-5",
+        "@plurid/plurid-react": "^0.0.0-16",
+        "@plurid/plurid-themes": "^0.0.0-1",
+        "@plurid/plurid-ui-components-react": "^0.0.0-9",
+        "@plurid/plurid-ui-state-react": "^0.0.0-2",
+        "cross-fetch": "^3.1.4",
+        "electron": "^16.0.5",
+        "hammerjs": "^2.0.8",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-redux": "^7.2.6",
+        "redux": "^4.1.2",
+        "redux-thunk": "^2.4.1",
+        "styled-components": "^5.3.3"
+    },
+    "devDependencies": {
+        "@types/jest": "^27.4.0",
+        "@types/react": "^17.0.38",
+        "@types/react-dom": "^17.0.11",
+        "@types/styled-components": "^5.1.19",
+        "copy-webpack-plugin": "^10.2.0",
+        "electron-packager": "^15.4.0",
+        "html-webpack-plugin": "^5.5.0",
+        "jest": "^27.4.5",
+        "redux-devtools-extension": "^2.13.9",
+        "ts-jest": "^27.1.2",
+        "ts-loader": "^9.2.6",
+        "ts-node": "^10.4.0",
+        "tsconfig-paths-webpack-plugin": "^3.5.2",
+        "typescript": "^4.5.4",
+        "webpack": "^5.65.0",
+        "webpack-cli": "^4.9.1"
+    }
+}
