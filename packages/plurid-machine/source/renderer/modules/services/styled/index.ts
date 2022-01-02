@@ -90,7 +90,7 @@ const GlobalStyles = createGlobalStyle<IGlobalStyles>`
         /* cursor: none; */
     }
 
-    #denium {
+    #plurid-machine {
         box-sizing: border-box;
         overflow: auto;
         height: 100%;

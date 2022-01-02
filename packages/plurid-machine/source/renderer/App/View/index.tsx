@@ -18,6 +18,8 @@
         GlobalStyles,
     } from '~renderer-services/styled';
 
+    import Servers from '~source/renderer/modules/containers/Servers';
+
     import { AppState } from '~renderer-services/state/store';
     import StateContext from '~renderer-services/state/context';
     import selectors from '~renderer-services/state/selectors';
@@ -69,6 +71,8 @@ const View: React.FC<ViewProperties> = (
                 theme={stateGeneralTheme}
                 gradient={true}
             />
+
+            <Servers />
         </>
     );
     // #endregion render
