@@ -46,6 +46,11 @@ export const StyledServers = styled.div<IStyledServers>`
         margin: 2rem;
         width: calc(100% - 4rem);
     }
+
+    @media (max-width: 600px) {
+        margin: 2rem 0.5rem;
+        width: calc(100% - 1rem);
+    }
 `;
 
 
@@ -59,7 +64,7 @@ export const StyledServersList = styled.div`
         grid-template-columns: 1fr 1fr;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         grid-template-columns: 1fr;
     }
 `;
