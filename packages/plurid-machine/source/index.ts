@@ -1,9 +1,12 @@
 // #region imports
     // #region libraries
+    import path from 'path';
+
     import {
         app,
         screen,
         BrowserWindow,
+        Tray,
     } from 'electron';
     // #endregion libraries
 // #endregion imports
@@ -12,6 +15,7 @@
 
 // #region module
 let window: BrowserWindow | null = null;
+let tray: Tray | null = null;
 
 
 const createWindow = () => {
@@ -53,14 +57,34 @@ const createWindow = () => {
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
+    app.dock.hide();
+
+    // if (process.platform !== 'darwin') {
+    //     app.quit();
+    // }
 });
 
 app.on('activate', () => {
     if (window === null) {
         createWindow();
     }
+});
+
+
+app.whenReady().then(() => {
+    tray = new Tray(
+        path.join(
+            __dirname,
+            './assets/meta/tray.png',
+        ),
+    );
+    // tray.setToolTip('plurid machine');
+
+    tray.on('click', () => {
+        if (window === null) {
+            createWindow();
+            app.dock.show();
+        }
+    });
 });
 // #endregion module
