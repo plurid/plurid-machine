@@ -55,8 +55,20 @@ export const StyledServersList = styled.div`
     grid-gap: 2rem;
     justify-items: left;
 
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 500px) {
         grid-template-columns: 1fr;
     }
+`;
+
+
+export const StyledServerItem = styled.div`
+    display: flex;
+    align-items: center;
+    justi-content: space-between;
+    gap: 0.7rem;
 `;
 // #region module

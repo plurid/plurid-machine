@@ -6,9 +6,15 @@
     import { connect } from 'react-redux';
     import { ThunkDispatch } from 'redux-thunk';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridIconValid,
+        PluridIconInvalid,
+    } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
 
@@ -28,6 +34,7 @@
     import {
         StyledServers,
         StyledServersList,
+        StyledServerItem,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -152,15 +159,22 @@ const Servers: React.FC<ServersProperties> = (
                 <StyledServersList>
                     {infrastructureServers.map(infrastructureServer => {
                         return (
-                            <PluridLinkButton
+                            <StyledServerItem
                                 key={infrastructureServer}
-                                text={infrastructureServer}
-                                atClick={() => {
-                                    dispatchSetGeneralView(infrastructureServer);
-                                }}
-                                theme={stateGeneralTheme}
-                                inline={true}
-                            />
+                            >
+                                <PluridIconValid
+                                    theme={stateGeneralTheme}
+                                />
+
+                                <PluridLinkButton
+                                    text={infrastructureServer}
+                                    atClick={() => {
+                                        dispatchSetGeneralView(infrastructureServer);
+                                    }}
+                                    theme={stateGeneralTheme}
+                                    inline={true}
+                                />
+                            </StyledServerItem>
                         );
                     })}
                 </StyledServersList>
@@ -174,15 +188,22 @@ const Servers: React.FC<ServersProperties> = (
                 <StyledServersList>
                     {productsServers.map(productsServer => {
                         return (
-                            <PluridLinkButton
+                            <StyledServerItem
                                 key={productsServer}
-                                text={productsServer}
-                                atClick={() => {
-                                    dispatchSetGeneralView(productsServer);
-                                }}
-                                theme={stateGeneralTheme}
-                                inline={true}
-                            />
+                            >
+                                <PluridIconValid
+                                    theme={stateGeneralTheme}
+                                />
+
+                                <PluridLinkButton
+                                    text={productsServer}
+                                    atClick={() => {
+                                        dispatchSetGeneralView(productsServer);
+                                    }}
+                                    theme={stateGeneralTheme}
+                                    inline={true}
+                                />
+                            </StyledServerItem>
                         );
                     })}
                 </StyledServersList>
