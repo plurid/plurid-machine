@@ -73,6 +73,7 @@ const infrastructureServers = [
 const productsServers = [
     'plurid.com/www',
     'plurid.com/account',
+    'plurid.com/admin',
 
     // 'plurid.com/deback',
     // 'plurid.com/decode',
