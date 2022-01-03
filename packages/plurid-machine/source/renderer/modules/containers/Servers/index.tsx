@@ -10,32 +10,22 @@
     import {
         Theme,
     } from '@plurid/plurid-themes';
-
-    import {
-        PluridIconAdd,
-        PluridIconValid,
-        PluridIconInvalid,
-    } from '@plurid/plurid-icons-react';
     // #endregion libraries
 
 
     // #region external
-    import {
-        PluridLinkButton,
-    } from '~renderer-services/styled';
+    import ServersList from '~source/renderer/modules/components/ServersList';
 
     import { AppState } from '~renderer-services/state/store';
     import StateContext from '~renderer-services/state/context';
     import selectors from '~renderer-services/state/selectors';
-    import actions from '~renderer-services/state/actions';
+    // import actions from '~renderer-services/state/actions';
     // #endregion external
 
 
     // #region internal
     import {
         StyledServers,
-        StyledServersList,
-        StyledServerItem,
     } from './styled';
     // #endregion internal
 // #endregion imports
@@ -125,7 +115,6 @@ export interface ServersStateProperties {
 }
 
 export interface ServersDispatchProperties {
-    dispatchSetGeneralView: typeof actions.views.setGeneralView;
 }
 
 export type ServersProperties =
@@ -143,10 +132,6 @@ const Servers: React.FC<ServersProperties> = (
         stateGeneralTheme,
         // stateInteractionTheme,
         // #endregion state
-
-        // #region dispatch
-        dispatchSetGeneralView,
-        // #endregion dispatch
     } = properties;
     // #endregion properties
 
@@ -160,98 +145,26 @@ const Servers: React.FC<ServersProperties> = (
                 servers
             </h1>
 
-            <div
+            <ServersList
+                name="infrastructure"
+                servers={infrastructureServers}
                 style={{
                     marginBottom: '4rem',
                 }}
-            >
-                <h2>
-                    infrastructure
-                </h2>
+            />
 
-                <StyledServersList>
-                    {infrastructureServers.map(infrastructureServer => {
-                        return (
-                            <StyledServerItem
-                                key={infrastructureServer}
-                            >
-                                <PluridIconAdd
-                                    theme={stateGeneralTheme}
-                                />
+            <ServersList
+                name="∂products"
+                servers={productsServers}
+                style={{
+                    marginBottom: '4rem',
+                }}
+            />
 
-                                <PluridLinkButton
-                                    text={infrastructureServer}
-                                    atClick={() => {
-                                        dispatchSetGeneralView(infrastructureServer);
-                                    }}
-                                    theme={stateGeneralTheme}
-                                    inline={true}
-                                />
-                            </StyledServerItem>
-                        );
-                    })}
-                </StyledServersList>
-            </div>
-
-
-            <div>
-                <h2>
-                    ∂products
-                </h2>
-
-                <StyledServersList>
-                    {productsServers.map(productsServer => {
-                        return (
-                            <StyledServerItem
-                                key={productsServer}
-                            >
-                                <PluridIconAdd
-                                    theme={stateGeneralTheme}
-                                />
-
-                                <PluridLinkButton
-                                    text={productsServer}
-                                    atClick={() => {
-                                        dispatchSetGeneralView(productsServer);
-                                    }}
-                                    theme={stateGeneralTheme}
-                                    inline={true}
-                                />
-                            </StyledServerItem>
-                        );
-                    })}
-                </StyledServersList>
-            </div>
-
-
-            <div>
-                <h2>
-                    tertiary
-                </h2>
-
-                <StyledServersList>
-                    {tertiaryServers.map(tertiaryServer => {
-                        return (
-                            <StyledServerItem
-                                key={tertiaryServer}
-                            >
-                                <PluridIconAdd
-                                    theme={stateGeneralTheme}
-                                />
-
-                                <PluridLinkButton
-                                    text={tertiaryServer}
-                                    atClick={() => {
-                                        dispatchSetGeneralView(tertiaryServer);
-                                    }}
-                                    theme={stateGeneralTheme}
-                                    inline={true}
-                                />
-                            </StyledServerItem>
-                        );
-                    })}
-                </StyledServersList>
-            </div>
+            <ServersList
+                name="tertiary"
+                servers={tertiaryServers}
+            />
         </StyledServers>
     );
     // #endregion render
@@ -269,11 +182,6 @@ const mapStateToProperties = (
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): ServersDispatchProperties => ({
-    dispatchSetGeneralView: (
-        payload,
-    ) => dispatch(
-        actions.views.setGeneralView(payload),
-    ),
 });
 
 

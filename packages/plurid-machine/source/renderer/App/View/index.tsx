@@ -6,9 +6,14 @@
     import { connect } from 'react-redux';
     import { ThunkDispatch } from 'redux-thunk';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridApplication,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 
 
@@ -64,10 +69,6 @@ const View: React.FC<ViewProperties> = (
 
 
     // #region render
-    const view = stateGeneralView === '/'
-        ? (<Servers />)
-        : (<Server />);
-
     return (
         <>
             <PluridGlobalStyles
@@ -79,7 +80,24 @@ const View: React.FC<ViewProperties> = (
                 gradient={true}
             />
 
-            {view}
+            <PluridApplication
+                planes={[
+                    [ '/dashboard', Servers ],
+                    [ '/server/:name', Server ],
+                ]}
+                view={[
+                    '/dashboard',
+                ]}
+                configuration={{
+                    elements: {
+                        plane: {
+                            controls: {
+                                show: false,
+                            },
+                        },
+                    },
+                }}
+            />
         </>
     );
     // #endregion render

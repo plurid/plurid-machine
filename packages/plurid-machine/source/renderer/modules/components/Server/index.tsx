@@ -6,21 +6,22 @@
     import { connect } from 'react-redux';
     import { ThunkDispatch } from 'redux-thunk';
 
+
     import {
         Theme,
     } from '@plurid/plurid-themes';
+
+    import {
+        PluridPlaneComponentProperty,
+    } from '@plurid/plurid-react';
     // #endregion libraries
 
 
     // #region external
-    import {
-        PluridLinkButton,
-    } from '~renderer-services/styled';
-
     import { AppState } from '~renderer-services/state/store';
     import StateContext from '~renderer-services/state/context';
     import selectors from '~renderer-services/state/selectors';
-    import actions from '~renderer-services/state/actions';
+    // import actions from '~renderer-services/state/actions';
     // #endregion external
 
 
@@ -35,16 +36,15 @@
 
 // #region module
 export interface ServerOwnProperties {
+    plurid: PluridPlaneComponentProperty,
 }
 
 export interface ServerStateProperties {
     stateGeneralTheme: Theme;
     stateInteractionTheme: Theme;
-    stateGeneralView: string;
 }
 
 export interface ServerDispatchProperties {
-    dispatchSetGeneralView: typeof actions.views.setGeneralView;
 }
 
 export type ServerProperties =
@@ -58,16 +58,17 @@ const Server: React.FC<ServerProperties> = (
 ) => {
     // #region properties
     const {
+        // #region own
+        plurid,
+        // #endregion own
+
         // #region state
         stateGeneralTheme,
         // stateInteractionTheme,
-        stateGeneralView,
         // #endregion state
-
-        // #region dispatch
-        dispatchSetGeneralView,
-        // #endregion dispatch
     } = properties;
+
+    const serverName = decodeURIComponent(plurid.plane.parameters.name);
     // #endregion properties
 
 
@@ -76,15 +77,9 @@ const Server: React.FC<ServerProperties> = (
         <StyledServer
             theme={stateGeneralTheme}
         >
-            <PluridLinkButton
-                text="servers"
-                atClick={() => {
-                    dispatchSetGeneralView('/');
-                }}
-                theme={stateGeneralTheme}
-            />
-
-            Server
+            <h1>
+                {serverName}
+            </h1>
         </StyledServer>
     );
     // #endregion render
@@ -96,18 +91,12 @@ const mapStateToProperties = (
 ): ServerStateProperties => ({
     stateGeneralTheme: selectors.themes.getGeneralTheme(state),
     stateInteractionTheme: selectors.themes.getInteractionTheme(state),
-    stateGeneralView: selectors.views.getGeneralView(state),
 });
 
 
 const mapDispatchToProperties = (
     dispatch: ThunkDispatch<{}, {}, AnyAction>,
 ): ServerDispatchProperties => ({
-    dispatchSetGeneralView: (
-        payload,
-    ) => dispatch(
-        actions.views.setGeneralView(payload),
-    ),
 });
 
 

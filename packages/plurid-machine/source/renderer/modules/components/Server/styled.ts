@@ -16,5 +16,16 @@ export interface IStyledServer {
 }
 
 export const StyledServer = styled.div<IStyledServer>`
+    padding: 2rem;
+
+    font-family: ${
+        ({
+            theme,
+        }: IStyledServer) => theme.fontFamilySansSerif
+    };
+
+    h1 {
+        font-size: 2rem;
+    }
 `;
 // #region module

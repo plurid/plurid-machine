@@ -20,15 +20,10 @@ export const StyledServers = styled.div<IStyledServers>`
     margin: 2rem auto;
     padding: 2rem;
 
-    background-color: ${
+    font-family: ${
         ({
             theme,
-        }: IStyledServers) => theme.backgroundColorSecondary
-    };
-    box-shadow: ${
-        ({
-            theme,
-        }: IStyledServers) => theme.boxShadowUmbra
+        }: IStyledServers) => theme.fontFamilySansSerif
     };
 
     h1 {
@@ -51,29 +46,5 @@ export const StyledServers = styled.div<IStyledServers>`
         margin: 2rem 0.5rem;
         width: calc(100% - 1rem);
     }
-`;
-
-
-export const StyledServersList = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 2rem;
-    justify-items: left;
-
-    @media (max-width: 900px) {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    @media (max-width: 600px) {
-        grid-template-columns: 1fr;
-    }
-`;
-
-
-export const StyledServerItem = styled.div`
-    display: flex;
-    align-items: center;
-    justi-content: space-between;
-    gap: 0.7rem;
 `;
 // #region module
