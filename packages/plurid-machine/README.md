@@ -40,11 +40,20 @@ The plurid machine can be installed locally to self-host [plurid](https://plurid
 
 ## Packages
 
-<a target="_blank" href="https://www.npmjs.com/package/@plurid/plurid-machine">
-    <img src="https://img.shields.io/npm/v/@plurid/plurid-machine-server.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/abstract-machine">
+    <img src="https://img.shields.io/npm/v/@plurid/abstract-machine.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
 </a>
 
-[@plurid/plurid-machine][plurid-machine] • installer and controller
+[@plurid/abstract-machine][abstract-machine] • basis for self-hosting a machine
+
+[abstract-machine]: https://github.com/plurid/plurid-machine/tree/master/packages/abstract-machine
+
+
+<a target="_blank" href="https://www.npmjs.com/package/@plurid/plurid-machine">
+    <img src="https://img.shields.io/npm/v/@plurid/plurid-machine.svg?logo=npm&colorB=1380C3&style=for-the-badge" alt="Version">
+</a>
+
+[@plurid/plurid-machine][plurid-machine] • installer and controller for the plurid machine
 
 [plurid-machine]: https://github.com/plurid/plurid-machine/tree/master/packages/plurid-machine
 
